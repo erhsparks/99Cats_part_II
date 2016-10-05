@@ -5,11 +5,14 @@ class SessionsController < ApplicationController
   def create
     username, password = session_params.values
     user = User.find_by_credentials(username, password)
-    
+
     unless user.is_a?(User)
       flash.now[:errors] = user
+
       render :new
     else
+      session[:session_token] = user.reset_session_token!
+
       redirect_to user_url(user.id)
     end
   end

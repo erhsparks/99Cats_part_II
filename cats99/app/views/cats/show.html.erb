@@ -1,3 +1,5 @@
+<%= link_to "<-- Back to Cats", cats_url%>
+
 <h1><%= @cat.name %></h1>
 
 <table>
@@ -12,6 +14,7 @@
     </tr>
   <% end %>
 </table>
+<br>
 
 <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %>
 

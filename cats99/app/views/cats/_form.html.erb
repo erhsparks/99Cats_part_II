@@ -17,20 +17,7 @@
     name="cat[birth_date]"
     id="cat_birth_date"
     value="<%= cat.birth_date %>">
-  <br>
-
-  <label for="cat_color">Color</label>
-  <select name="cat[color]" id="cat_color">
-    <option></option>
-    <% Cat::CAT_COLORS.each do |color| %>
-      <option
-        <%= cat.color == color ? "selected" : "" %>
-        value="<%= color %>">
-        <%= color.upcase %>
-      </option>
-    <% end %>
-  </select>
-  <br>
+  <br><br>
 
   <input
     type="radio"
@@ -46,13 +33,30 @@
     id="cat_sex_female"
     <%= cat.sex == "F" ? "checked" : "" %>>
   <label for="cat_sex_female">Female</label>
-  <br>
+  <br><br>
+
+    <label for="cat_color">Color</label>
+    <select name="cat[color]" id="cat_color">
+      <option></option>
+      <% Cat::CAT_COLORS.each do |color| %>
+      <option
+      <%= cat.color == color ? "selected" : "" %>
+      value="<%= color %>">
+      <%= color.upcase %>
+    </option>
+    <% end %>
+  </select>
+  <br><br>
 
   <label>
-    Description
+    Description <br>
     <textarea name="cat[description]"><%= cat.description %></textarea>
+    <br><br>
   </label>
 
   <% submit_text = (cat.persisted? ? 'Update' : 'Create') + ' cat!' %>
+
+  <%= link_to "Cancel", cats_url%>
   <input type="submit" value="<%= submit_text %>">
+
 </form>
