@@ -1,0 +1,17 @@
+<h2>Sign up!</h2>
+
+<%= render "shared/errors" %>
+
+<form action="<%= users_url %>" method="post">
+
+  <label for="username">Choose a username:</label>
+  <input type="text" name="user[username]" id="username">
+
+  <br><br>
+
+  <label for="password">Choose a password:</label>
+  <input type="password" name="user[password]" id="password">
+  <p>Password must be at least six characters long.</p>
+
+  <button>Submit</button>
+</form>
