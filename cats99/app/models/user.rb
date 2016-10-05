@@ -19,11 +19,13 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   def self.find_by_credentials(username, password)
-    user = Users.find_by(username: username)
-    return nil if user.nil?
+    user = User.find_by(username: username)
+    return ["User not found"] if user.nil?
 
     if user.is_password?(password)
       user
+    else
+      ["Username and password don't match"]
     end
   end
 
