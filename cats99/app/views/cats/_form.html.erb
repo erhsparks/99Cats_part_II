@@ -56,7 +56,7 @@
 
   <% submit_text = (cat.persisted? ? 'Update' : 'Create') + ' cat!' %>
 
-  <%= link_to "Cancel", cats_url%>
   <input type="submit" value="<%= submit_text %>">
+  <%= button_to "Cancel", cats_url, method: :get %>
 
 </form>
