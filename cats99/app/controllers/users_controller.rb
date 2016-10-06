@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.valid?
+      session[:session_token] = user.create_session_token
       user.save
 
       redirect_to user_url(user.id)
@@ -17,7 +18,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render :show
+    if current_user.nil?
+      if @user.username != current_user.username
+      flash[:errors] = ["Don't try to access another person's profile!"]
+
+      redirect_to cats_url
+      else
+        render :show
+      end
+    else
+      render :show
+    end
   end
 
   private
